@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafés de El Salvador | Cuna del Pacamara y Especialidad Volcánica</title>
+  <meta name="description" content="Guía interactiva y sensorial de los mejores cafés de especialidad de El Salvador. Descubre las 6 cordilleras volcánicas, cafeterías de autor, variedades insignes, quiz de sabor y laboratorio de extracción.">
+  <meta name="theme-color" content="#0C0A09">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☕</text></svg>">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            roast: {
+              900: '#0C0A09',
+              800: '#171311',
+              700: '#261F1B',
+              600: '#3D312A',
+            },
+            amberGold: {
+              300: '#FCE7C8',
+              400: '#F7D09E',
+              500: '#E5A967',
+              600: '#C97E36',
+              700: '#9B5B20',
+            },
+            volcano: {
+              400: '#FFA585',
+              500: '#C25E3E',
+              600: '#9C3E21',
+            }
+          },
+          fontFamily: {
+            sans: ['Outfit', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-[#0C0A09] text-[#F5EFEB] antialiased selection:bg-amber-600 selection:text-white overflow-x-hidden w-full max-w-full relative">
+
+  <!-- Ambient Glow Effects in Background (Encapsulated to avoid mobile width expansion) -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div class="ambient-glow-1 top-20 left-[-150px]"></div>
+    <div class="ambient-glow-2 top-[800px] right-[-150px]"></div>
+    <div class="ambient-glow-1 top-[2200px] left-[10%]"></div>
+    <div class="ambient-glow-2 top-[3800px] right-[5%]"></div>
+  </div>
+
+  <!-- HEADER / NAVBAR -->
+  <header id="main-header" class="fixed top-0 left-0 w-full z-50 glass-nav transition-all duration-300 py-3 px-3.5 sm:px-8">
+    <div class="max-w-7xl mx-auto flex items-center justify-between gap-2">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-2 sm:gap-3 group shrink-0">
+        <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-amberGold-400 to-volcano-500 p-0.5 shadow-lg shadow-amber-900/30 group-hover:scale-105 transition-transform">
+          <div class="w-full h-full bg-roast-900 rounded-[10px] flex items-center justify-center">
+            <i data-lucide="coffee" class="w-4 h-4 sm:w-5 sm:h-5 text-amberGold-400"></i>
+          </div>
+        </div>
+        <div class="min-w-0">
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            <span class="font-serif font-black text-lg sm:text-xl tracking-wider text-gradient-gold">CUMBRE</span>
+            <span class="text-[9px] sm:text-xs px-1.5 py-0.5 rounded bg-amber-900/40 text-amberGold-300 font-semibold border border-amberGold-500/20">EL SALVADOR</span>
+          </div>
+          <p class="text-[10px] sm:text-[11px] text-neutral-400 tracking-tight hidden sm:block">Guía Oficial de Café de Especialidad</p>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-7 text-sm font-medium text-neutral-300">
+        <a href="#cordilleras" class="hover:text-amberGold-400 transition-colors flex items-center gap-1.5">
+          <i data-lucide="mountain" class="w-4 h-4 text-amber-500/70"></i> 6 Cordilleras
+        </a>
+        <a href="#cafeterias" class="hover:text-amberGold-400 transition-colors flex items-center gap-1.5">
+          <i data-lucide="compass" class="w-4 h-4 text-amber-500/70"></i> Directorio
+        </a>
+        <a href="#variedades" class="hover:text-amberGold-400 transition-colors flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-4 h-4 text-amber-500/70"></i> Pacamara & Variedades
+        </a>
+        <a href="#quiz" class="hover:text-amberGold-400 transition-colors flex items-center gap-1.5">
+          <i data-lucide="help-circle" class="w-4 h-4 text-amber-500/70"></i> Tu Café Ideal
+        </a>
+        <a href="#laboratorio" class="hover:text-amberGold-400 transition-colors flex items-center gap-1.5">
+          <i data-lucide="timer" class="w-4 h-4 text-amber-500/70"></i> Barista Lab
+        </a>
+      </nav>
+
+      <!-- Action Controls -->
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        
+        <!-- Ambient Sound Toggle -->
+        <button id="sound-toggle-btn" title="Ambiente de Cafetería Acústico" class="flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-full bg-roast-800 border border-neutral-700/80 hover:border-amberGold-500/60 text-xs text-neutral-300 hover:text-amberGold-300 transition-all">
+          <div class="sound-bars" id="sound-bars-indicator">
+            <span class="sound-bar"></span>
+            <span class="sound-bar"></span>
+            <span class="sound-bar"></span>
+          </div>
+          <span id="sound-label" class="hidden md:inline">Café Chill</span>
+        </button>
+
+        <!-- Favorites Button -->
+        <button id="favorites-btn" class="relative p-2 rounded-xl bg-roast-800 border border-neutral-700/80 hover:border-amberGold-500/60 text-neutral-300 hover:text-amberGold-400 transition-all">
+          <i data-lucide="heart" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+          <span id="favorites-count" class="absolute -top-1.5 -right-1.5 bg-gradient-to-r from-amber-600 to-volcano-500 text-white text-[9px] sm:text-[10px] font-bold w-4 h-4 sm:w-5 sm:h-5 rounded-full flex items-center justify-center shadow-md">0</span>
+        </button>
+
+        <!-- Mobile Menu Trigger -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 rounded-xl bg-roast-800 border border-neutral-700/80 text-neutral-300">
+          <i data-lucide="menu" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+        </button>
+
+        <a href="#cafeterias" class="hidden md:inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-gradient-to-r from-amberGold-500 to-amberGold-600 text-roast-900 font-semibold text-xs tracking-wide shadow-lg shadow-amber-900/30 hover:shadow-amber-600/30 hover:scale-[1.02] active:scale-95 transition-all">
+          <span>Explorar Cafeterías</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Navigation -->
+    <div id="mobile-menu" class="hidden lg:hidden mt-3 pt-3 border-t border-neutral-800/80 flex flex-col gap-2 text-sm font-medium">
+      <a href="#cordilleras" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-roast-700 text-neutral-300">6 Cordilleras Cafetaleras</a>
+      <a href="#cafeterias" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-roast-700 text-neutral-300">Directorio de Cafeterías</a>
+      <a href="#variedades" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-roast-700 text-neutral-300">El Pacamara y Variedades</a>
+      <a href="#quiz" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-roast-700 text-neutral-300">Quiz: Encuentra tu Café</a>
+      <a href="#laboratorio" class="mobile-nav-link py-2 px-3 rounded-lg hover:bg-roast-700 text-neutral-300">Laboratorio y Cronómetro Barista</a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="relative min-h-[85vh] sm:min-h-[92vh] flex items-center justify-center pt-24 sm:pt-28 pb-12 sm:pb-16 px-4 sm:px-6 overflow-hidden">
+    
+    <!-- Background Image with Dark Vignette Overlay -->
+    <div class="absolute inset-0 z-0">
+      <img src="assets/hero_coffee.jpg" alt="Café de El Salvador en Cordillera Volcánica" class="w-full h-full object-cover object-center filter brightness-[0.42] scale-105 animate-pulse-subtle">
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0C0A09] via-[#0C0A09]/75 to-transparent"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-[#0C0A09]/90 via-transparent to-[#0C0A09]/90"></div>
+    </div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center w-full">
+      
+      <!-- Top Tag Badge -->
+      <div class="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 rounded-full bg-amberGold-500/10 border border-amberGold-500/30 text-amberGold-300 text-[11px] sm:text-sm font-medium mb-5 sm:mb-6 backdrop-blur-md max-w-full">
+        <span class="w-2 h-2 rounded-full bg-amberGold-400 animate-ping shrink-0"></span>
+        <span class="truncate">Cuna del Pacamara • Suelos Volcánicos</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-serif text-3xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white mb-4 sm:mb-6 leading-[1.18] max-w-full">
+        El Arte del Café <br class="hidden sm:inline">
+        <span class="text-gradient-gold italic">de Especialidad</span> en El Salvador
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="max-w-2xl text-neutral-300 text-sm sm:text-base md:text-xl font-light leading-relaxed mb-8 sm:mb-10 text-balance px-2">
+        Un recorrido sensorial por las 6 cordilleras volcánicas, las cafeterías de autor más premiadas y la maestría de un país cuna de Campeones Mundiales de Barismo.
+      </p>
+
+      <!-- Call to Actions -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 w-full sm:w-auto mb-10 sm:mb-14">
+        <a href="#cafeterias" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-gradient-to-r from-amberGold-500 to-amberGold-600 text-roast-900 font-bold text-sm sm:text-base shadow-xl shadow-amber-900/40 hover:scale-105 active:scale-95 transition-all">
+          <i data-lucide="compass" class="w-4 h-4 sm:w-5 sm:h-5"></i>
+          <span>Explorar Cafeterías de Autor</span>
+        </a>
+        
+        <a href="#quiz" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl glass-card text-white hover:text-amberGold-300 font-semibold text-sm sm:text-base border border-amberGold-500/25 hover:border-amberGold-500/60 hover:scale-105 active:scale-95 transition-all">
+          <i data-lucide="sparkles" class="w-4 h-4 sm:w-5 sm:h-5 text-amberGold-400"></i>
+          <span>Quiz: Descubre tu Café Ideal</span>
+        </a>
+      </div>
+
+      <!-- Quick Metrics Bar -->
+      <div class="w-full max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-4 text-left">
+        
+        <div class="glass-card p-3 sm:p-4 rounded-2xl border border-neutral-800/80">
+          <div class="text-amberGold-400 font-serif font-black text-xl sm:text-3xl mb-0.5">6</div>
+          <div class="text-[11px] sm:text-xs font-semibold text-neutral-200">Cordilleras</div>
+          <div class="text-[10px] sm:text-[11px] text-neutral-400">Denominaciones volcánicas</div>
+        </div>
+
+        <div class="glass-card p-3 sm:p-4 rounded-2xl border border-neutral-800/80">
+          <div class="text-amberGold-400 font-serif font-black text-xl sm:text-3xl mb-0.5">2,380m</div>
+          <div class="text-[11px] sm:text-xs font-semibold text-neutral-200">Altura Máxima</div>
+          <div class="text-[10px] sm:text-[11px] text-neutral-400">Grano estricta altura (SHG)</div>
+        </div>
+
+        <div class="glass-card p-3 sm:p-4 rounded-2xl border border-neutral-800/80">
+          <div class="text-amberGold-400 font-serif font-black text-xl sm:text-3xl mb-0.5">1958</div>
+          <div class="text-[11px] sm:text-xs font-semibold text-neutral-200">Nace el Pacamara</div>
+          <div class="text-[10px] sm:text-[11px] text-neutral-400">Genética 100% salvadoreña</div>
+        </div>
+
+        <div class="glass-card p-3 sm:p-4 rounded-2xl border border-neutral-800/80">
+          <div class="text-amberGold-400 font-serif font-black text-xl sm:text-3xl mb-0.5">WBC</div>
+          <div class="text-[11px] sm:text-xs font-semibold text-neutral-200">Campeón Mundial</div>
+          <div class="text-[10px] sm:text-[11px] text-neutral-400">Bogotá 2011 (A. Méndez)</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom Scroll Indicator -->
+    <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 text-neutral-500 hover:text-amberGold-400 transition-colors">
+      <span class="text-[10px] tracking-wider uppercase font-semibold">Desliza</span>
+      <i data-lucide="chevron-down" class="w-3.5 h-3.5 animate-bounce"></i>
+    </div>
+  </section>
+
+
+  <!-- CORDILLERAS SECTION -->
+  <section id="cordilleras" class="relative py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden">
+    
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-volcano-500/10 border border-volcano-500/30 text-volcano-400 text-xs font-bold uppercase tracking-wider mb-3">
+        <i data-lucide="flame" class="w-3.5 h-3.5"></i> Terroir Volcánico
+      </div>
+      <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
+        Las 6 Cordilleras Cafetaleras de El Salvador
+      </h2>
+      <p class="text-neutral-300 text-xs sm:text-sm md:text-base leading-relaxed">
+        Cada cadena montañosa salvadoreña posee un microclima único, bañado por cenizas volcánicas ricas en minerales que otorgan perfiles en taza mundialmente venerados.
+      </p>
+    </div>
+
+    <!-- Cordilleras Interactive Tabs -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 mb-6 sm:mb-8 w-full" id="cordilleras-tabs-container">
+      <!-- Generated dynamically by JS -->
+    </div>
+
+    <!-- Cordillera Active Detail Card -->
+    <div id="cordillera-detail-panel" class="glass-card rounded-3xl p-5 sm:p-10 border border-amberGold-500/20 relative overflow-hidden">
+      <!-- Dynamically filled by JS -->
+    </div>
+
+  </section>
+
+
+  <!-- CAFETERIAS DIRECTORY SECTION -->
+  <section id="cafeterias" class="relative py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4 sm:gap-6">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amberGold-500/10 border border-amberGold-500/30 text-amberGold-400 text-xs font-bold uppercase tracking-wider mb-3">
+          <i data-lucide="coffee" class="w-3.5 h-3.5"></i> Barras & Tostadores
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-2 sm:mb-3">
+          Directorio de Cafés de Autor
+        </h2>
+        <p class="text-neutral-300 text-xs sm:text-sm md:text-base max-w-xl">
+          Selección curada de los templos de especialidad en San Salvador, Santa Tecla, Santa Ana y la Ruta de las Flores.
+        </p>
+      </div>
+
+      <!-- Live Search Box -->
+      <div class="w-full md:w-80 relative">
+        <i data-lucide="search" class="w-5 h-5 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+        <input 
+          type="text" 
+          id="search-input" 
+          placeholder="Buscar cafetería, método o zona..." 
+          class="w-full pl-11 pr-4 py-2.5 sm:py-3 rounded-2xl bg-roast-800 border border-neutral-700/80 focus:border-amberGold-500 text-white placeholder-neutral-500 text-sm outline-none transition-all"
+        >
+        <button id="search-clear-btn" class="hidden absolute right-3.5 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Filter Buttons Scrollable Row: Contained to prevent horizontal body blowout -->
+    <div class="w-full max-w-full overflow-hidden mb-6 sm:mb-8">
+      <div class="flex items-center gap-2 overflow-x-auto pb-3 no-scrollbar w-full min-w-0" id="filters-container">
+        <button class="filter-btn active px-3.5 sm:px-4 py-2 rounded-xl text-xs border border-neutral-700/80 bg-roast-800 text-neutral-300 hover:border-amberGold-500/50" data-filter="all">
+          ☕ Todos los Cafés
+        </button>
+        <button class="filter-btn px-3.5 sm:px-4 py-2 rounded-xl text-xs border border-neutral-700/80 bg-roast-800 text-neutral-300 hover:border-amberGold-500/50" data-filter="san-salvador">
+          📍 San Salvador
+        </button>
+        <button class="filter-btn px-3.5 sm:px-4 py-2 rounded-xl text-xs border border-neutral-700/80 bg-roast-800 text-neutral-300 hover:border-amberGold-500/50" data-filter="santa-tecla">
+          🌿 Santa Tecla / Cuscatlán
+        </button>
+        <button class="filter-btn px-3.5 sm:px-4 py-2 rounded-xl text-xs border border-neutral-700/80 bg-roast-800 text-neutral-300 hover:border-amberGold-500/50" data-filter="santa-ana">
+          🏛️ Santa Ana
+        </button>
+        <button class="filter-btn px-3.5 sm:px-4 py-2 rounded-xl text-xs border border-neutral-700/80 bg-roast-800 text-neutral-300 hover:border-amberGold-500/50" data-filter="ruta-flores">
+          🌸 Ruta de las Flores
+        </button>
+        <button class="filter-btn px-3.5 sm:px-4 py-2 rounded-xl text-xs border border-neutral-700/80 bg-roast-800 text-neutral-300 hover:border-amberGold-500/50" data-tag="Terraza">
+          ☀️ Con Terraza
+        </button>
+        <button class="filter-btn px-3.5 sm:px-4 py-2 rounded-xl text-xs border border-neutral-700/80 bg-roast-800 text-neutral-300 hover:border-amberGold-500/50" data-tag="Coworking">
+          💻 Coworking
+        </button>
+        <button class="filter-btn px-3.5 sm:px-4 py-2 rounded-xl text-xs border border-neutral-700/80 bg-roast-800 text-neutral-300 hover:border-amberGold-500/50" data-tag="Pet Friendly">
+          🐾 Pet Friendly
+        </button>
+        <button class="filter-btn px-3.5 sm:px-4 py-2 rounded-xl text-xs border border-amberGold-500/30 bg-amberGold-500/10 text-amberGold-300 hover:bg-amberGold-500/20" data-filter="favorites">
+          ❤️ Mis Favoritos (<span id="filter-favorites-count">0</span>)
+        </button>
+      </div>
+    </div>
+
+    <!-- Cafeterias Cards Grid -->
+    <div id="cafes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+      <!-- Rendered dynamically by JS -->
+    </div>
+
+    <!-- Empty State -->
+    <div id="empty-state" class="hidden py-16 text-center">
+      <div class="w-16 h-16 rounded-full bg-roast-800 border border-neutral-700 flex items-center justify-center mx-auto mb-4 text-amberGold-400">
+        <i data-lucide="coffee" class="w-8 h-8 opacity-60"></i>
+      </div>
+      <h3 class="text-lg font-bold text-white mb-1">No encontramos resultados</h3>
+      <p class="text-neutral-400 text-sm max-w-sm mx-auto mb-4">Prueba buscando con otro término o seleccionando otra categoría.</p>
+      <button id="reset-filter-btn" class="px-5 py-2.5 rounded-xl bg-amberGold-500 text-roast-900 font-semibold text-xs">
+        Restablecer Filtros
+      </button>
+    </div>
+
+  </section>
+
+
+  <!-- VARIEDADES SECTION (PACAMARA, BOURBON, PACAS) -->
+  <section id="variedades" class="relative py-16 sm:py-24 px-4 sm:px-6 bg-roast-800/40 border-y border-neutral-800/80 overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-3">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Genética y Legado
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
+          La Trilogía Insigne del Café Salvadoreño
+        </h2>
+        <p class="text-neutral-300 text-xs sm:text-sm md:text-base leading-relaxed">
+          El Salvador no solo produce café; ha creado variedades botánicas legendarias que han redefinido los estándares mundiales de dulzura, tamaño de grano y complejidad aromática.
+        </p>
+      </div>
+
+      <!-- Variedades Showcase Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+        
+        <!-- Pacamara Card -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-amberGold-500/30 flex flex-col justify-between relative overflow-hidden">
+          <div class="absolute -top-12 -right-12 w-40 h-40 bg-amberGold-500/10 rounded-full blur-2xl"></div>
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-amberGold-500/20 text-amberGold-300 text-xs font-bold border border-amberGold-500/30">
+                🇸🇻 Orgullo Salvadoreño (1958)
+              </span>
+              <span class="text-xs font-mono text-neutral-400">Screen 19+ Gigante</span>
+            </div>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">Pacamara</h3>
+            <p class="text-xs text-amberGold-400/90 font-medium mb-4">Cruce de Pacas × Maragogipe creado por el ISIC</p>
+            <p class="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-6">
+              El tesoro supremo de la caficultura salvadoreña. Grano de dimensiones imponentes, cuerpo suntuoso y un estallido frutal de melocotón, maracuyá, jazmín silvestre y acidez brillante.
+            </p>
+            
+            <div class="space-y-3 text-xs bg-roast-900/60 p-3.5 sm:p-4 rounded-2xl border border-neutral-800 mb-6">
+              <div class="flex items-start gap-2">
+                <i data-lucide="award" class="w-4 h-4 text-amberGold-400 shrink-0 mt-0.5"></i>
+                <span class="text-neutral-300"><strong class="text-white">+20 galardones</strong> en Taza de la Excelencia Internacional.</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <i data-lucide="flame" class="w-4 h-4 text-amberGold-400 shrink-0 mt-0.5"></i>
+                <span class="text-neutral-300">Métodos ideales: <strong>V60, Chemex y Origami Dripper</strong>.</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
+            <span>Origen: Santa Ana, El Salvador</span>
+            <span class="text-amberGold-400 font-semibold">Taza de Culto</span>
+          </div>
+        </div>
+
+        <!-- Bourbon Card -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-neutral-700/60 flex flex-col justify-between relative overflow-hidden">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-volcano-500/20 text-volcano-400 text-xs font-bold border border-volcano-500/30">
+                ☕ Realeza Clásica
+              </span>
+              <span class="text-xs font-mono text-neutral-400">Rojo, Amarillo y Rosado</span>
+            </div>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">Bourbon</h3>
+            <p class="text-xs text-volcano-400/90 font-medium mb-4">La nobleza tradicional del bosque cafetero</p>
+            <p class="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-6">
+              El linaje que convirtió a El Salvador en una potencia cafetalera. Ofrece una dulzura acaramelada natural inconfundible, balance perfecto, chocolate con leche y textura redonda aterciopelada.
+            </p>
+            
+            <div class="space-y-3 text-xs bg-roast-900/60 p-3.5 sm:p-4 rounded-2xl border border-neutral-800 mb-6">
+              <div class="flex items-start gap-2">
+                <i data-lucide="trees" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span class="text-neutral-300">Constituye el <strong>60% del bosque cafetero bajo sombra</strong> del país.</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <i data-lucide="flame" class="w-4 h-4 text-volcano-400 shrink-0 mt-0.5"></i>
+                <span class="text-neutral-300">Métodos ideales: <strong>Espresso, Aeropress y Prensa Francesa</strong>.</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
+            <span>Maduración uniforme</span>
+            <span class="text-volcano-400 font-semibold">Dulzor a Panela</span>
+          </div>
+        </div>
+
+        <!-- Pacas Card -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 border border-neutral-700/60 flex flex-col justify-between relative overflow-hidden">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold border border-emerald-500/30">
+                🌋 Mutación Natural (1949)
+              </span>
+              <span class="text-xs font-mono text-neutral-400">Finca San Rafael, Santa Ana</span>
+            </div>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">Pacas</h3>
+            <p class="text-xs text-emerald-400/90 font-medium mb-4">Descubierto por la familia Pacas en Santa Ana</p>
+            <p class="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-6">
+              Mutación natural espontánea del Bourbon adaptada a los vientos de las cumbres volcánicas. Produce una taza limpia y vivaz, notas de manzana verde, cacao y cítricos suaves muy refrescantes.
+            </p>
+            
+            <div class="space-y-3 text-xs bg-roast-900/60 p-3.5 sm:p-4 rounded-2xl border border-neutral-800 mb-6">
+              <div class="flex items-start gap-2">
+                <i data-lucide="dna" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span class="text-neutral-300">Padre genético del <strong>Pacamara</strong> y adaptado al viento de altura.</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <i data-lucide="flame" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                <span class="text-neutral-300">Métodos ideales: <strong>Cold Brew, Kalita y Filtrado en Frío</strong>.</span>
+              </div>
+            </div>
+          </div>
+          <div class="pt-4 border-t border-neutral-800 flex items-center justify-between text-xs text-neutral-400">
+            <span>Porte compacto y vigoroso</span>
+            <span class="text-emerald-400 font-semibold">Taza Cristalina</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Feature Visual Showcase Banner -->
+      <div class="glass-card rounded-3xl p-5 sm:p-10 border border-amberGold-500/20 grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-center">
+        <div class="img-zoom-container rounded-2xl overflow-hidden shadow-2xl border border-amberGold-500/20">
+          <img src="assets/beans_pacamara.jpg" alt="Granos Pacamara y cerezas maduras" class="w-full h-60 sm:h-80 object-cover">
+        </div>
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amberGold-500/10 text-amberGold-300 text-xs font-semibold mb-3">
+            <i data-lucide="coffee" class="w-3.5 h-3.5"></i> Anatomía de un Grano de Altura
+          </div>
+          <h3 class="font-serif text-xl sm:text-3xl font-bold text-white mb-3 sm:mb-4">¿Por qué el Pacamara salvadoreño es tan cotizado en el mundo?</h3>
+          <p class="text-neutral-300 text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+            Al fusionar la resistencia y taza dulce del Pacas con el tamaño gigantesco y notas aromáticas florales del Maragogipe, los científicos salvadoreños crearon un perfil organoléptico inigualable.
+          </p>
+          <p class="text-neutral-400 text-xs leading-relaxed mb-5 sm:mb-6">
+            En certámenes como el <em>Cup of Excellence</em>, microlotes de Pacamara salvadoreño han alcanzado precios récords superiores a los $100 dólares por libra, exportándose a los tostadores más exigentes de Tokio, Melbourne, Londres y San Francisco.
+          </p>
+          <div class="flex items-center gap-4">
+            <a href="#cafeterias" class="w-full sm:w-auto text-center px-5 py-2.5 rounded-xl bg-gradient-to-r from-amberGold-500 to-amberGold-600 text-roast-900 font-bold text-xs hover:scale-105 transition-all">
+              Probar Pacamara en Cafeterías
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- QUIZ SENSORIAL: ENCUENTRA TU CAFÉ IDEAL -->
+  <section id="quiz" class="relative py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto overflow-hidden">
+    
+    <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-12">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amberGold-500/10 border border-amberGold-500/30 text-amberGold-400 text-xs font-bold uppercase tracking-wider mb-3">
+        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> Test Sensorial
+      </div>
+      <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
+        ¿Cuál es tu Café Salvadoreño Ideal?
+      </h2>
+      <p class="text-neutral-300 text-xs sm:text-sm md:text-base leading-relaxed">
+        Responde 3 sencillas preguntas sobre tus gustos y nuestro sumiller digital te indicará tu variedad predilecta, notas y la cafetería perfecta para vivir la experiencia.
+      </p>
+    </div>
+
+    <!-- Interactive Quiz Card -->
+    <div class="glass-card rounded-3xl p-5 sm:p-10 border border-amberGold-500/25 relative overflow-hidden shadow-2xl">
+      
+      <!-- Progress Bar -->
+      <div class="mb-6 sm:mb-8">
+        <div class="flex justify-between items-center text-xs font-semibold text-neutral-400 mb-2">
+          <span id="quiz-step-indicator">Paso 1 de 3</span>
+          <span id="quiz-percent-indicator">33%</span>
+        </div>
+        <div class="w-full h-2 bg-roast-800 rounded-full overflow-hidden border border-neutral-700/60">
+          <div id="quiz-progress-bar" class="h-full bg-gradient-to-r from-amberGold-500 to-volcano-500 transition-all duration-500 w-1/3"></div>
+        </div>
+      </div>
+
+      <!-- Question 1 -->
+      <div id="quiz-question-1" class="quiz-step-pane">
+        <h3 class="font-serif text-lg sm:text-2xl font-bold text-white mb-2">1. ¿Qué perfil de sabor prefieres en tu taza?</h3>
+        <p class="text-neutral-400 text-xs sm:text-sm mb-5 sm:mb-6">Selecciona la nota sensorial que más te cautiva al despertar:</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          <button class="quiz-option text-left p-4 sm:p-5 rounded-2xl bg-roast-800/80 hover:bg-roast-700 border border-neutral-700 hover:border-amberGold-500/80 transition-all group" data-q="1" data-val="frutal">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amberGold-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="flower" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-white text-sm mb-1">Exótico y Floral</div>
+            <div class="text-xs text-neutral-400">Jazmín, melocotón, mora silvestre y acidez brillante tipo Pacamara.</div>
+          </button>
+
+          <button class="quiz-option text-left p-4 sm:p-5 rounded-2xl bg-roast-800/80 hover:bg-roast-700 border border-neutral-700 hover:border-amberGold-500/80 transition-all group" data-q="1" data-val="achocolatado">
+            <div class="w-10 h-10 rounded-xl bg-volcano-500/10 text-volcano-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="cookie" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-white text-sm mb-1">Dulce y Achocolatado</div>
+            <div class="text-xs text-neutral-400">Chocolate con leche, caramelo a panela y nueces tostadas tipo Bourbon.</div>
+          </button>
+
+          <button class="quiz-option text-left p-4 sm:p-5 rounded-2xl bg-roast-800/80 hover:bg-roast-700 border border-neutral-700 hover:border-amberGold-500/80 transition-all group" data-q="1" data-val="citrico">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="citrus" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-white text-sm mb-1">Cítrico y Refrescante</div>
+            <div class="text-xs text-neutral-400">Manzana verde, mandarina y dulzura limpia y vivaz tipo Pacas.</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Question 2 -->
+      <div id="quiz-question-2" class="quiz-step-pane hidden">
+        <h3 class="font-serif text-lg sm:text-2xl font-bold text-white mb-2">2. ¿Cómo prefieres que se extraiga tu café?</h3>
+        <p class="text-neutral-400 text-xs sm:text-sm mb-5 sm:mb-6">El método define la textura y la intensidad:</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          <button class="quiz-option text-left p-4 sm:p-5 rounded-2xl bg-roast-800/80 hover:bg-roast-700 border border-neutral-700 hover:border-amberGold-500/80 transition-all group" data-q="2" data-val="filtrado">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amberGold-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="droplet" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-white text-sm mb-1">Filtrado Artesanal (Pour-over)</div>
+            <div class="text-xs text-neutral-400">V60, Chemex u Origami. Taza sedosa, limpia y repleta de matices aromáticos.</div>
+          </button>
+
+          <button class="quiz-option text-left p-4 sm:p-5 rounded-2xl bg-roast-800/80 hover:bg-roast-700 border border-neutral-700 hover:border-amberGold-500/80 transition-all group" data-q="2" data-val="espresso">
+            <div class="w-10 h-10 rounded-xl bg-volcano-500/10 text-volcano-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="gauge" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-white text-sm mb-1">Espresso & Flat White</div>
+            <div class="text-xs text-neutral-400">Concentrado, crema dorada, cuerpo denso o leche vaporizada con microespuma.</div>
+          </button>
+
+          <button class="quiz-option text-left p-4 sm:p-5 rounded-2xl bg-roast-800/80 hover:bg-roast-700 border border-neutral-700 hover:border-amberGold-500/80 transition-all group" data-q="2" data-val="frio">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="wind" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-white text-sm mb-1">Cold Brew & Cold Drip</div>
+            <div class="text-xs text-neutral-400">Maceración en frío de 18 horas, refrescante, baja acidez y notas licorosas.</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Question 3 -->
+      <div id="quiz-question-3" class="quiz-step-pane hidden">
+        <h3 class="font-serif text-lg sm:text-2xl font-bold text-white mb-2">3. ¿Qué atmósfera buscas al visitar una cafetería?</h3>
+        <p class="text-neutral-400 text-xs sm:text-sm mb-5 sm:mb-6">El entorno eleva la experiencia del café:</p>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+          <button class="quiz-option text-left p-4 sm:p-5 rounded-2xl bg-roast-800/80 hover:bg-roast-700 border border-neutral-700 hover:border-amberGold-500/80 transition-all group" data-q="3" data-val="montana">
+            <div class="w-10 h-10 rounded-xl bg-volcano-500/10 text-volcano-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="mountain" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-white text-sm mb-1">Mirador de Altura & Bruma</div>
+            <div class="text-xs text-neutral-400">Terraza al aire libre, vistas panorámicas a volcanes y aire fresco de montaña.</div>
+          </button>
+
+          <button class="quiz-option text-left p-4 sm:p-5 rounded-2xl bg-roast-800/80 hover:bg-roast-700 border border-neutral-700 hover:border-amberGold-500/80 transition-all group" data-q="3" data-val="urbano">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amberGold-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="building-2" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-white text-sm mb-1">Vanguardista & Coworking</div>
+            <div class="text-xs text-neutral-400">Diseño minimalista moderno, excelente Wi-Fi, baristas de competición y enfoque.</div>
+          </button>
+
+          <button class="quiz-option text-left p-4 sm:p-5 rounded-2xl bg-roast-800/80 hover:bg-roast-700 border border-neutral-700 hover:border-amberGold-500/80 transition-all group" data-q="3" data-val="botanico">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+              <i data-lucide="trees" class="w-5 h-5"></i>
+            </div>
+            <div class="font-bold text-white text-sm mb-1">Jardín Botánico & Calma</div>
+            <div class="text-xs text-neutral-400">Patio verde con helechos y monsteras, tranquilidad y buena lectura.</div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Result State -->
+      <div id="quiz-result" class="quiz-step-pane hidden">
+        <!-- Injected dynamically by JS -->
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BARISTA LAB & EXTRACTION TIMER SECTION -->
+  <section id="laboratorio" class="relative py-16 sm:py-24 px-4 sm:px-6 bg-roast-800/40 border-t border-neutral-800/80 overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-amberGold-500/10 border border-amberGold-500/30 text-amberGold-400 text-xs font-bold uppercase tracking-wider mb-3">
+          <i data-lucide="flask-conical" class="w-3.5 h-3.5"></i> Ciencia del Barista
+        </div>
+        <h2 class="font-serif text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
+          Laboratorio de Extracción y Cronómetro
+        </h2>
+        <p class="text-neutral-300 text-xs sm:text-sm md:text-base leading-relaxed">
+          Prepara tu café salvadoreño con precisión milimétrica. Selecciona el método, ajusta el gramaje deseado y sigue nuestro cronómetro interactivo con alertas de vertido.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-start">
+        
+        <!-- Left Column: Method Selector & Ratio Calculator -->
+        <div class="lg:col-span-5 glass-card rounded-3xl p-5 sm:p-8 border border-neutral-700/80">
+          
+          <h3 class="font-serif text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+            <i data-lucide="sliders" class="w-5 h-5 text-amberGold-400"></i>
+            <span>1. Elige tu Método y Gramaje</span>
+          </h3>
+
+          <!-- Method Picker Buttons -->
+          <div class="grid grid-cols-2 gap-2 sm:gap-2.5 mb-5 sm:mb-6" id="brew-method-selector">
+            <button class="brew-btn active p-2.5 sm:p-3 rounded-2xl bg-roast-800 border border-amberGold-500/80 text-left text-xs font-semibold text-white transition-all flex items-center gap-2" data-method="v60">
+              <span class="w-2 h-2 rounded-full bg-amberGold-400"></span>
+              <span>Hario V60 (1:15)</span>
+            </button>
+            <button class="brew-btn p-2.5 sm:p-3 rounded-2xl bg-roast-800 border border-neutral-700 text-left text-xs font-semibold text-neutral-300 hover:border-amberGold-500/40 transition-all flex items-center gap-2" data-method="chemex">
+              <span class="w-2 h-2 rounded-full bg-neutral-500"></span>
+              <span>Chemex (1:16)</span>
+            </button>
+            <button class="brew-btn p-2.5 sm:p-3 rounded-2xl bg-roast-800 border border-neutral-700 text-left text-xs font-semibold text-neutral-300 hover:border-amberGold-500/40 transition-all flex items-center gap-2" data-method="aeropress">
+              <span class="w-2 h-2 rounded-full bg-neutral-500"></span>
+              <span>Aeropress (1:12)</span>
+            </button>
+            <button class="brew-btn p-2.5 sm:p-3 rounded-2xl bg-roast-800 border border-neutral-700 text-left text-xs font-semibold text-neutral-300 hover:border-amberGold-500/40 transition-all flex items-center gap-2" data-method="frenchpress">
+              <span class="w-2 h-2 rounded-full bg-neutral-500"></span>
+              <span>Prensa (1:14)</span>
+            </button>
+          </div>
+
+          <!-- Grams Slider Calculator -->
+          <div class="bg-roast-900/80 p-4 sm:p-5 rounded-2xl border border-neutral-800 mb-5 sm:mb-6">
+            <div class="flex justify-between items-center mb-3">
+              <label for="coffee-grams-input" class="text-xs font-semibold text-neutral-300 flex items-center gap-1.5">
+                <i data-lucide="scale" class="w-4 h-4 text-amberGold-400"></i> Café Molido:
+              </label>
+              <span class="text-base font-bold font-mono text-amberGold-400" id="coffee-grams-display">18 g</span>
+            </div>
+            
+            <input 
+              type="range" 
+              id="coffee-grams-input" 
+              min="12" 
+              max="40" 
+              value="18" 
+              step="1" 
+              class="w-full h-2 bg-roast-700 rounded-lg cursor-pointer"
+            >
+            <div class="flex justify-between text-[10px] text-neutral-500 mt-1 font-mono">
+              <span>12g (1 taza)</span>
+              <span>25g (2 tazas)</span>
+              <span>40g (Jarra)</span>
+            </div>
+          </div>
+
+          <!-- Calculated Extraction Parameters -->
+          <div class="grid grid-cols-2 gap-2.5 sm:gap-3 text-xs mb-5 sm:mb-6">
+            <div class="bg-roast-800/70 p-3 sm:p-3.5 rounded-xl border border-neutral-700/60">
+              <div class="text-neutral-400 text-[10px] sm:text-[11px] mb-1">Agua a Verter</div>
+              <div class="font-serif text-lg sm:text-xl font-bold text-white" id="water-grams-display">270 g</div>
+              <div class="text-[10px] text-neutral-500 font-mono">92°C - 94°C</div>
+            </div>
+            <div class="bg-roast-800/70 p-3 sm:p-3.5 rounded-xl border border-neutral-700/60">
+              <div class="text-neutral-400 text-[10px] sm:text-[11px] mb-1">Molienda Sugerida</div>
+              <div class="font-bold text-white text-xs mt-1" id="grind-display">Media-Fina</div>
+              <div class="text-[10px] text-amberGold-400/90 mt-0.5">Sal marina fina</div>
+            </div>
+          </div>
+
+          <div class="p-3.5 sm:p-4 rounded-2xl bg-amberGold-500/10 border border-amberGold-500/20 text-xs text-neutral-300 leading-relaxed" id="method-description-text">
+            El método predilecto de los baristas salvadoreños para extraer la acidez vibrante, flores de jazmín y frutas tropicales del Pacamara.
+          </div>
+
+        </div>
+
+        <!-- Right Column: Interactive Step-by-Step Timer -->
+        <div class="lg:col-span-7 glass-card rounded-3xl p-5 sm:p-8 border border-amberGold-500/25 flex flex-col justify-between">
+          
+          <div>
+            <div class="flex items-center justify-between mb-4 sm:mb-6 gap-2">
+              <div class="flex items-center gap-2 min-w-0">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                <h3 class="font-serif text-lg sm:text-xl font-bold text-white truncate" id="timer-method-title">Hario V60 - Filtrado Artesanal</h3>
+              </div>
+              <div class="text-[11px] sm:text-xs font-mono text-neutral-400 shrink-0">Meta: <span id="target-time-label">03:00</span></div>
+            </div>
+
+            <!-- Big Digital Timer Display -->
+            <div class="text-center py-5 sm:py-6 bg-roast-900/90 rounded-3xl border border-neutral-800 relative overflow-hidden mb-5 sm:mb-6 timer-glow">
+              <div class="font-mono text-5xl sm:text-7xl font-bold tracking-tight text-white mb-2" id="timer-display">
+                00:00
+              </div>
+              
+              <!-- Current Phase Banner -->
+              <div class="inline-flex items-center gap-2 px-3.5 sm:px-4 py-1 sm:py-1.5 rounded-full bg-amberGold-500/20 text-amberGold-300 text-xs sm:text-sm font-semibold border border-amberGold-500/30" id="timer-phase-badge">
+                <i data-lucide="play" class="w-3 h-3 sm:w-3.5 sm:h-3.5"></i>
+                <span id="timer-phase-text">Listo para iniciar</span>
+              </div>
+
+              <!-- Overall Progress Bar -->
+              <div class="absolute bottom-0 left-0 w-full h-1.5 bg-neutral-800">
+                <div id="timer-progress-fill" class="h-full bg-gradient-to-r from-amberGold-500 to-emerald-400 transition-all duration-300 w-0"></div>
+              </div>
+            </div>
+
+            <!-- Timer Action Buttons -->
+            <div class="flex items-center justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
+              <button id="timer-start-btn" class="px-5 sm:px-7 py-3 sm:py-3.5 rounded-2xl bg-gradient-to-r from-amberGold-500 to-amberGold-600 text-roast-900 font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-amber-900/30 hover:scale-105 active:scale-95 transition-all">
+                <i data-lucide="play" class="w-4 h-4"></i>
+                <span id="timer-start-label">Iniciar Extracción</span>
+              </button>
+              
+              <button id="timer-reset-btn" class="px-4 sm:px-5 py-3 sm:py-3.5 rounded-2xl bg-roast-800 border border-neutral-700 hover:border-neutral-500 text-neutral-300 hover:text-white text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all">
+                <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
+                <span>Reiniciar</span>
+              </button>
+            </div>
+
+            <!-- Phase Guide Steps Tracker -->
+            <h4 class="text-xs uppercase font-bold text-neutral-400 tracking-wider mb-3">Fases de Vertido en Vivo</h4>
+            <div class="space-y-2 sm:space-y-2.5" id="timer-phases-list">
+              <!-- Rendered dynamically by JS -->
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- FOOTER & HERITAGE TRIBUTE -->
+  <footer class="relative bg-roast-900 border-t border-neutral-800/80 pt-16 pb-12 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto">
+      
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 mb-12">
+        
+        <div class="md:col-span-5">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-amberGold-400 to-volcano-500 p-0.5">
+              <div class="w-full h-full bg-roast-900 rounded-[10px] flex items-center justify-center">
+                <i data-lucide="coffee" class="w-4 h-4 text-amberGold-400"></i>
+              </div>
+            </div>
+            <span class="font-serif font-bold text-xl text-gradient-gold">CUMBRE • EL SALVADOR</span>
+          </div>
+          <p class="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-6 max-w-md">
+            Homenaje vivo a los caficultores salvadoreños, recolectores, tostadores y baristas que preservan el bosque cafetalero bajo sombra y llevan los granos de nuestras cumbres volcánicas al mundo.
+          </p>
+          <div class="flex items-center gap-3 text-xs text-neutral-400">
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-roast-800 border border-neutral-800">
+              <span class="w-2 h-2 rounded-full bg-sky-400"></span> 🇸🇻 El Salvador
+            </span>
+            <span>Tierra de Volcanes y Pacamara</span>
+          </div>
+        </div>
+
+        <div class="md:col-span-3">
+          <h4 class="text-xs uppercase font-bold text-neutral-200 tracking-wider mb-4">Navegación</h4>
+          <ul class="space-y-2.5 text-xs text-neutral-400">
+            <li><a href="#cordilleras" class="hover:text-amberGold-400 transition-colors">6 Cordilleras Cafetaleras</a></li>
+            <li><a href="#cafeterias" class="hover:text-amberGold-400 transition-colors">Directorio de Cafeterías</a></li>
+            <li><a href="#variedades" class="hover:text-amberGold-400 transition-colors">El Pacamara Salvadoreño</a></li>
+            <li><a href="#quiz" class="hover:text-amberGold-400 transition-colors">Test de Café Ideal</a></li>
+            <li><a href="#laboratorio" class="hover:text-amberGold-400 transition-colors">Laboratorio y Cronómetro</a></li>
+          </ul>
+        </div>
+
+        <div class="md:col-span-4">
+          <h4 class="text-xs uppercase font-bold text-neutral-200 tracking-wider mb-4">Hito Histórico</h4>
+          <div class="p-4 rounded-2xl bg-roast-800/80 border border-neutral-800 text-xs text-neutral-300 leading-relaxed">
+            <div class="flex items-center gap-2 text-amberGold-400 font-bold mb-1.5">
+              <i data-lucide="trophy" class="w-4 h-4"></i> WBC Bogotá 2011
+            </div>
+            El Salvador se convirtió en el <strong>primer país productor de café en la historia</strong> en coronar a un Campeón Mundial de Barismo (Alejandro Méndez, Viva Espresso, Finca Las Delicias Pacamara).
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 border-t border-neutral-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
+        <p>© 2026 CUMBRE — Cafés de Especialidad de El Salvador. Creado con pasión por el buen café.</p>
+        <div class="flex items-center gap-4">
+          <a href="#main-header" class="hover:text-amberGold-400 transition-colors flex items-center gap-1">
+            <span>Volver arriba</span>
+            <i data-lucide="arrow-up" class="w-3.5 h-3.5"></i>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <!-- MODAL: FICHA TÉCNICA DE CAFETERÍA -->
+  <div id="cafe-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md transition-opacity duration-300 opacity-0">
+    <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto glass-modal rounded-3xl p-6 sm:p-8 text-neutral-200">
+      
+      <!-- Close Button -->
+      <button id="modal-close-btn" class="absolute top-5 right-5 p-2 rounded-full bg-roast-800 text-neutral-400 hover:text-white hover:bg-roast-700 transition-colors">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <!-- Modal Content Placeholder -->
+      <div id="modal-content-area">
+        <!-- Rendered dynamically by JS -->
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- MODAL / DRAWER: MIS FAVORITOS -->
+  <div id="favorites-drawer" class="fixed inset-0 z-50 hidden flex justify-end bg-black/70 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+    <div class="relative w-full max-w-md h-full bg-roast-900 border-l border-neutral-800 p-6 flex flex-col justify-between overflow-y-auto">
+      
+      <div>
+        <div class="flex items-center justify-between pb-4 border-b border-neutral-800 mb-6">
+          <div class="flex items-center gap-2">
+            <i data-lucide="heart" class="w-5 h-5 text-amberGold-400"></i>
+            <h3 class="font-serif font-bold text-xl text-white">Mis Cafeterías Favoritas</h3>
+          </div>
+          <button id="favorites-drawer-close" class="p-2 rounded-xl bg-roast-800 text-neutral-400 hover:text-white">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div id="favorites-list-container" class="space-y-4">
+          <!-- Rendered dynamically by JS -->
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-neutral-800 mt-6">
+        <button id="clear-all-favorites-btn" class="w-full py-2.5 rounded-xl border border-neutral-700 hover:border-red-500/50 text-neutral-400 hover:text-red-400 text-xs font-semibold transition-colors">
+          Vaciar lista de favoritos
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- SCRIPTS -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+  </script>
+</body>
+</html>
